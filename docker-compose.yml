@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  student-profile-service:
+    build: ./student-profile-service
+    container_name: student-profile-service
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./student-profile-service:/app
+    command: python app.py
+
+  course-catalogue-service:
+    build: ./course-catalogue-service
+    container_name: course-catalogue-service
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./course-catalogue-service:/app
+    command: python app.py
+
+  feedback-service:
+    build: ./feedback-service
+    container_name: feedback-service
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./feedback-service:/app
+    command: python app.py
+
+networks:
+  default:
+    name: microservices-network
